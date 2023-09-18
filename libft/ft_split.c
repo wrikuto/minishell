@@ -5,138 +5,141 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 18:47:43 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/06/05 17:21:31 by wrikuto          ###   ########.fr       */
+/*   Created: 2023/09/11 11:51:31 by wrikuto           #+#    #+#             */
+/*   Updated: 2023/09/15 14:37:57 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-static	size_t	ft_sublen(const char *str, char c)
+void	free_sub(char **ret, size_t i)
 {
-	size_t	len;
+	size_t	j;
 
-	len = 0;
-	while (*str == c)
-		str++;
-	while (str[len] != '\0' && str[len] != c)
-		len++;
-	return (len);
+	j = 0;
+	while (j < i)
+	{
+		free(ret[j]);
+		j++;
+	}
+	free(ret);
 }
 
-static	size_t	ft_count_substr(char const *s, char c)
+size_t	ft_sublen(char const *str, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != c)
+		i++;
+	return (i);
+}
+
+size_t	count_sub(char const *str, char c)
 {
 	size_t	i;
 	size_t	count;
-	size_t	reset;
+	int		flag;
 
 	i = 0;
 	count = 0;
-	reset = 0;
-	while (s[i] != '\0')
+	flag = 0;
+	while (str[i] == c)
+		i++;
+	while (str[i] != '\0')
 	{
-		if (s[i] != c && reset == 0)
+		if (str[i] != c && flag == 0)
 		{
 			count++;
-			reset++;
-		}	
-		if (s[i] == c)
-			reset = 0;
+			flag = 1;
+		}
+		if (str[i] == c && flag == 1)
+			flag = 0;
 		i++;
 	}
 	return (count);
 }
 
-static	char	*ft_substr_split(char const *s, unsigned int start, char c)
+char	**set_sub(char const *str, char c, char **ret, size_t sub_n)
 {
 	size_t	i;
-	size_t	sublen;
-	char	*res;
+	size_t	j;
 
 	i = 0;
-	if (s == NULL || s[start] == '\0')
-		return (NULL);
-	sublen = ft_sublen(&s[start], c);
-	res = malloc(sizeof(char) * (sublen + 1));
-	if (res == NULL)
-		return (NULL);
-	while (s[start] == c)
-		start++;
-	while (i < sublen && (s[start + i] != '\0' && s[start + i] != c))
+	while (i < sub_n)
 	{
-		res[i] = s[start + i];
-		i++;
+		j = 0;
+		while (*str == c)
+			str++;
+		ret[i] = malloc(sizeof(char) * (ft_sublen(str, c) + 1));
+		if (ret[i] == NULL)
+		{
+			free_sub(ret, i);
+			return (NULL);
+		}
+		while (*str != c && *str != '\0')
+		{
+			ret[i][j] = *str;
+			j++;
+			str++;
+		}
+		ret[i][j] = '\0';
+	i++;
 	}
-	res[i] = '\0';
-	if (s[start + i] != '\0' && s[start + i] != c)
-	{
-		free(res);
-		return (NULL);
-	}
-	return (res);
+	return (ret);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	char	**res;
+	size_t	sub_n;
+	char	**ret;
 
-	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
-	res = malloc(sizeof(char *) * (ft_count_substr(s, c) + 1));
-	if (res == NULL)
+	sub_n = count_sub(s, c);
+	ret = malloc(sizeof(char *) * (sub_n + 1));
+	if (ret == NULL)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		if ((i == 0 && s[i] != c) \
-			|| (s[i + 1] != c && s[i] == c && s[i + 1] != '\0'))
-			res[j++] = ft_substr_split(s, i, c);
-		i++;
-	}
-	res[j] = NULL;
-	return (res);
+	if (s[0] == '\0')
+		return (ret);
+	ret[sub_n] = NULL;
+	ret = set_sub(s, c, ret, sub_n);
+	return (ret);
 }
 
-// int main(void)
+// #include <stdio.h>
+
+// int main(int argc, char **argv)
 // {
-// 	char const *s = ",,,hello,,,world,,,42,,,tokyo,,,,";
-// 	char c = ',';
-
-// 	// ft_split 関数のテスト
-// 	char **result = ft_split(s, c);
-
-// 	// 結果の出力
+// 	char	**str;
+// 	char	*moji = "\0aa\0bbb";
 // 	int i = 0;
-// 	while (result[i] != NULL)
+
+// 	str = ft_split(moji, '\0');
+
+// 	if (str == NULL)
 // 	{
-// 		printf("%s\n", result[i]);
-// 		free(result[i]);
+// 		printf("ERROR!\n");
+// 		return (1);
+// 	}
+// 	while (str[i] != NULL)
+// 	{
+// 		printf("%s\n", str[i]);
 // 		i++;
 // 	}
-// 	free(result);
-// 	return 0;
-// }
-// ---
-// static	size_t	ft_split_strlcpy(char *dest, const char *src, size_t size)
-// {
-// 	size_t	i;
-// 	size_t	src_len;
 
-// 	src_len = 0;
-// 	while (src[src_len] != '\0')
-// 		src_len++;
-// 	if (size != 0)
+// 	i = 0;
+// 	while (str[i] != NULL)
 // 	{
-// 		i = 0;
-// 		while ((i < (size - 1)) && (src[i] != '\0'))
-// 		{
-// 			dest[i] = src[i];
-// 			i++;
-// 		}
-// 		dest[i] = '\0';
+// 		free (str[i]);
+// 		i++;
 // 	}
-// 	return (src_len);
+// 	free(str);
+
+// 	return (0);
+// }
+
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q a.out");
 // }
