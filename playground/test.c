@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:47:21 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/09/14 21:47:17 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/09/19 17:37:10 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void) {
     }
     // execveで処理が終わるため、以下は実行されない。
     if (pid == 0) 
-        printf("asfdafaweaega\n");
+        printf("this sentence isnt displayed\n");
   return (0);
 }
  
