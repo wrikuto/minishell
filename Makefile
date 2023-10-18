@@ -5,10 +5,9 @@ INC		= ./inc
 # GNL		= ./get_next_line
 # GNL_A	= $(addprefix $(GNL), libgnl.a)
 LIBFT	= ./libft
-LIBFT_A	= $(addprefix $(LIBFT), libft.a)
+LIBFT_A	= $(addprefix $(LIBFT), /libft.a)
 
-
-OBJ_DIR	= ./objs
+SRC_DIR	= ./srcs
 SRCS	= \
 		./srcs/main.c \
 		./srcs/builtin/cat.c \
@@ -21,30 +20,34 @@ OBJS = $(SRCS:.c=.o)
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror -I$(INC)
-RM		= rm -f
+RM		= rm -rf
 
 all:		$(OBJ_DIR) $(NAME)
 
 
-$(OBJ_DIR)/%.o: $(SRCS:.c=.o)
-				$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME):		$(OBJS) $(GNL_A)
-				$(CC) $(FLAGS) $(OBJS) -lreadline -llibft -o $(NAME)
 
+$(NAME):		$(OBJS) $(LIBFT_A)
+				$(CC) $(FLAGS) $(OBJS) $(LIBFT_A) -lreadline -o $(NAME)
+
+$(LIBFT_A):
+				@$(MAKE) -s -C $(LIBFT)
 
 # $(GNL_A):
 # 				$(MAKE) -s -C $(GNL)
 
-$(OBJ_DIR):
-				mkdir -p $(OBJ_DIR)
 
-clean:
-				# $(MAKE) clean -s -C $(GNL)
-				$(RM) $(OBJ_DIR)/*
+
+clsr:
+				@$(RM) $(SRC_DIR)/**/*.o
+				@echo "delete srcs/**/*.o"
+
+clean:			clsr
+				# $(MAKE) clean -s -C $(LIBFT)
+
 
 fclean:			clean
-				# $(MAKE) fclean -s -C $(GNL)
+				# $(MAKE) fclean -s -C $(LIBFT)
 				$(RM) $(NAME)
 
 re:				fclean all
