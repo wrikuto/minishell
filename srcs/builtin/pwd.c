@@ -6,10 +6,10 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:15:50 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/10 15:05:52 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/18 18:16:08 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../inc/global.h>
+#include "../../inc/minishell.h"
 
 // int	ft_pwd()

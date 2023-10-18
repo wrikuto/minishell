@@ -6,17 +6,17 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:25 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/10 16:47:14 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/18 18:10:40 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include"inc/global.h"
+# include"../inc/minishell.h"
 
 int	analysis_line(char *line, char **environ)
 {
 	int	i = 0;
 
-	if (ft_strncmp(line, "env", SIZE_MAX) == 0)
+	if (ft_strncmp(line, "envi", SIZE_MAX) == 0)
 	{
 		while (environ[i++] != NULL)
 			printf("%s\n", environ[i]);
