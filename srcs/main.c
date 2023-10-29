@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:25 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/18 18:10:40 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/28 21:57:00 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,34 @@
 int	analysis_line(char *line, char **environ)
 {
 	int	i = 0;
+	int	rtn = 0;
+	char	*res;
 
-	if (ft_strncmp(line, "envi", SIZE_MAX) == 0)
+	if (ft_strncmp(line, "env", SIZE_MAX) == 0)
 	{
 		while (environ[i++] != NULL)
-			printf("%s\n", environ[i]);
+		{
+			if (environ[i] == NULL)
+				break ;
+			ft_printf("%s\n", environ[i]);
+		}
 	}
 	else if (ft_strncmp(line, "exit", SIZE_MAX) == 0)
 	{
 		free(line);
-		return (-1);
+		exit(0);
+	}
+	else if (ft_strncmp(line, "pwd", SIZE_MAX) == 0)
+		rtn = ft_pwd();
+	else
+	{
+		res = search_path(line);
+		if (res)
+		{
+			ft_printf("find path: %s\n", res);
+			ft_exec(res);
+			free(res);
+		}
 	}
 	return (0);
 }
@@ -42,27 +60,16 @@ int main(void)
 		line = readline("minishell$ ");
 		if (line == NULL)
 			return (0) ;
-		if (line)
-			add_history(line);
+		// if (line)
+		// 	add_history(line);
 		if (analysis_line(line, environ) == -1)
 			exit(0);
-		// if (line == NULL)
-		// 	break ;
-		// if (ft_strncmp(line, "env", SIZE_MAX) == 0)
-		// {
-		// 	while (environ[i++] != NULL)
-		// 		printf("%s\n", environ[i]);
-		// }
-		// else if (ft_strncmp(line, "exit", SIZE_MAX) == 0)
-		// {
-		// 	free(line);
-		// 	exit(0);
-		// }
-			
-		// if (*line)
-		// 	add_history(line);
-		// // TODO: intepret line as a command
 		free(line);
 	}
-	exit(0);
+	return (0);
+}
+
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q minishell");
 }

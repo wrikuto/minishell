@@ -6,13 +6,13 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:51:31 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/09/15 14:37:57 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/28 20:34:44 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	free_sub(char **ret, size_t i)
+static void	free_sub(char **ret, size_t i)
 {
 	size_t	j;
 
@@ -25,7 +25,7 @@ void	free_sub(char **ret, size_t i)
 	free(ret);
 }
 
-size_t	ft_sublen(char const *str, char c)
+static size_t	ft_sublen(char const *str, char c)
 {
 	size_t	i;
 
@@ -35,7 +35,7 @@ size_t	ft_sublen(char const *str, char c)
 	return (i);
 }
 
-size_t	count_sub(char const *str, char c)
+static size_t	count_sub(char const *str, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -60,7 +60,7 @@ size_t	count_sub(char const *str, char c)
 	return (count);
 }
 
-char	**set_sub(char const *str, char c, char **ret, size_t sub_n)
+static char	**set_sub(char const *str, char c, char **ret, size_t sub_n)
 {
 	size_t	i;
 	size_t	j;
