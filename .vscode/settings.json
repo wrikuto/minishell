@@ -2,7 +2,8 @@
 	"files.associations": {
 		"limits.h": "c",
 		"minishell.h": "c",
-		"stat.h": "c"
+		"stat.h": "c",
+		"stdlib.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,35 +6,21 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 18:23:41 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/28 21:05:31 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/31 18:26:58 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include"../../inc/minishell.h"
 
-void    print_table(char **table)
-{
-        size_t  i = 0;
-
-        while (table[i] != NULL)
-        {
-
-                printf("%s\n", table[i]);
-                i++;
-        }
-}
-
-// char	**get_splited_path(const char *path)
+// void    print_table(char **table)
 // {
-// 	char	**split;
+//         size_t  i = 0;
 
-// 	split = ft_split(path);
-// 	if (split == NULL)
-// 	{
-// 		ft_printf("split fail!\n");
-// 		return (NULL);
-// 	}
-// 	return (split)
+//         while (table[i] != NULL)
+//         {
+//                 printf("%s\n", table[i]);
+//                 i++;
+//         }
 // }
 
 char	*search_path(const char *filename)

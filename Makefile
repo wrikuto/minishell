@@ -6,7 +6,7 @@
 #    By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 18:56:17 by wrikuto           #+#    #+#              #
-#    Updated: 2023/10/28 21:07:45 by wrikuto          ###   ########.fr        #
+#    Updated: 2023/10/31 17:44:39 by wrikuto          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ SRCS	= \
 		./srcs/main.c \
 		./srcs/builtin/cat.c \
 		./srcs/builtin/pwd.c \
-		./srcs/builtin/search_path.c \
 		./srcs/exec/exec.c \
-		./srcs/parser/parser.c \
-		./srcs/parser/input_spliter.c \
+		./srcs/exec/search_path.c \
+		./srcs/parse/parser.c \
+		./srcs/parse/input_spliter.c \
 		./srcs/free/free.c \
 		./srcs/error/error_msg.c \
 
@@ -58,7 +58,7 @@ $(PRTF_A):
 				@echo "printf compiled"
 
 
-clsr:
+cls:
 				@$(RM) $(OBJS)
 				@echo "deleted srcs/**/*.o"
 
@@ -79,7 +79,7 @@ fclean:			clean
 
 re:				fclean all
 
-sre:			clsr
+sre:			cls
 				$(MAKE)
 				@echo "remake srcs"
 

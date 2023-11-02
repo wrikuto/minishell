@@ -6,12 +6,11 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:47:21 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/29 17:34:23 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/29 23:21:11 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "minishell.h"
+#include "../../inc/minishell.h"
 
 typedef struct s_token		t_token;
 enum e_token_kind {

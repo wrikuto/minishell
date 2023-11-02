@@ -6,14 +6,15 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:25 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/28 21:57:00 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/31 17:59:22 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include"../inc/minishell.h"
 
-int	analysis_line(char *line, char **environ)
+int	analysis_line(char *line)
 {
+	extern char **environ;	
 	int	i = 0;
 	int	rtn = 0;
 	char	*res;
@@ -50,7 +51,6 @@ int	analysis_line(char *line, char **environ)
 int main(void)
 {
 	char	*line;
-	extern char **environ;	
 	int i;
 
 	rl_outstream = stderr;
@@ -62,7 +62,7 @@ int main(void)
 			return (0) ;
 		// if (line)
 		// 	add_history(line);
-		if (analysis_line(line, environ) == -1)
+		if (analysis_line(line) == -1)
 			exit(0);
 		free(line);
 	}

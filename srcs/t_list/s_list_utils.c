@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:10:17 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/29 17:18:06 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:15:10 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,27 +78,27 @@ t_list	*create_list(void *data)
 }
 
 
-int main()
-{
-	size_t	i = 0;
-	t_list	*list = NULL;
-	char	*str = "hello";
+// int main()
+// {
+// 	size_t	i = 0;
+// 	t_list	*list = NULL;
+// 	char	*str = "hello";
 
 
-	while (i < 3)
-	{
-		ft_lstadd_back(&list, ft_lstnew(str));
-		i++;
-	}
+// 	while (i < 3)
+// 	{
+// 		ft_lstadd_back(&list, ft_lstnew(str));
+// 		i++;
+// 	}
 
-	while (list != NULL)
-	{
-		printf("%s\n", (char *)list->data);
-		list = list->next;
-	}
+// 	while (list != NULL)
+// 	{
+// 		printf("%s\n", (char *)list->data);
+// 		list = list->next;
+// 	}
 
 	
-	// printf("%s\n", (char *)list->data);
-	free(list);
-	return (0);
-}
+// 	// printf("%s\n", (char *)list->data);
+// 	free(list);
+// 	return (0);
+// }
