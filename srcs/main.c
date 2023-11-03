@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:25 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/31 17:59:22 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/03 23:00:36 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	analysis_line(char *line)
 {
-	extern char **environ;	
+	extern char **environ;
+	t_list	*list;
 	int	i = 0;
 	int	rtn = 0;
 	char	*res;
+	t_list	*temp;
 
+	list = NULL;
 	if (ft_strncmp(line, "env", SIZE_MAX) == 0)
 	{
 		while (environ[i++] != NULL)
@@ -37,13 +40,16 @@ int	analysis_line(char *line)
 		rtn = ft_pwd();
 	else
 	{
-		res = search_path(line);
+		parse(line, &list);
+		res = search_path(list->token);
 		if (res)
 		{
-			ft_printf("find path: %s\n", res);
-			ft_exec(res);
-			free(res);
+			free(list->token);
+			list->token = res;
+			// ft_printf("find path: %s\n", list->token);  // TST
+			ft_exec(list);
 		}
+		free_list(&list);
 	}
 	return (0);
 }

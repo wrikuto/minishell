@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:10:17 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/31 16:15:10 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/03 21:53:51 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,66 @@
 
 // list utils
 
-void	clear_list(t_list **lst, void (*del)(void *))
+
+void	free_list(t_list **list)
 {
 	t_list	*temp;
 
-	if (lst == NULL)
+	if (list == NULL)
 		return ;
-	while (*lst != NULL)
+	while (*list != NULL)
 	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
+		temp = (*list)->next;
+		free((*list)->token);
+		free(*list);
+		*list = temp;
 	}
 }
 
-int	get_listsize(t_list *lst)
+size_t	get_listsize(t_list *list)
 {
 	size_t	lstsize;
 
 	lstsize = 0;
-	while (lst)
+	while (list != NULL)
 	{
 		lstsize++;
-		lst = lst->next;
+		list = list->next;
 	}
 	return (lstsize);
 }
 
-
-t_list	*find_listlast(t_list *lst)
+t_list	*find_listlast(t_list *list)
 {
-	if (lst == NULL)
+	if (list == NULL)
 		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	while (list->next != NULL)
+		list = list->next;
+	return (list);
 }
 
 // ----------
 // create list
 
-void	add_listback(t_list **lst, t_list *new)
+void	add_listback(t_list **list, t_list *new)
 {
-	if (lst == NULL || new == NULL)
+	if (list == NULL || new == NULL)
 		return ;
-	if (*lst == NULL)
-		*lst = new;
+	if (*list == NULL)
+		*list = new;
 	else
-		ft_lstlast(*lst)->next = new;
+		find_listlast(*list)->next = new;
 }
 
 
-t_list	*create_list(void *data)
+t_list	*create_list(char *pointer)
 {
 	t_list	*new_node;
 
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return (NULL);
-	new_node->data = data;
+	new_node->token = pointer;
 	new_node->next = NULL;
 	return (new_node);
 }

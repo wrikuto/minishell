@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 21:35:06 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/06/05 17:22:09 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:37:26 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (res);
 }
 
-// #include<stdio.h>
-// int main() {
-//     const char *s1 = "\n\n\t    Hello \t  Please\n Trim me !\t\t\t\n   ";
-//     const char *set = " \n\t";
-//     char *trimmed = ft_strtrim(s1, set);
-//     // printf("Original string: %s\n", s1);
-//     printf("Trimmed string: [%s]\n", trimmed);
-//     // free(trimmed); // メモリ解放
-//     return 0;
-// }
+#include<stdio.h>
+int main() {
+    const char *s1 = "\n\n\t    Hello \t  Please\n Trim me !\t\t\t\n   ";
+    const char *set = " \n\t";
+    char *trimmed = ft_strtrim(s1, set);
+    // printf("Original string: %s\n", s1);
+    printf("Trimmed string: [%s]\n", trimmed);
+    // free(trimmed); // メモリ解放
+    return 0;
+}

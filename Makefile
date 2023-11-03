@@ -6,7 +6,7 @@
 #    By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 18:56:17 by wrikuto           #+#    #+#              #
-#    Updated: 2023/10/31 17:44:39 by wrikuto          ###   ########.fr        #
+#    Updated: 2023/11/03 21:26:04 by wrikuto          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRCS	= \
 		./srcs/builtin/pwd.c \
 		./srcs/exec/exec.c \
 		./srcs/exec/search_path.c \
-		./srcs/parse/parser.c \
-		./srcs/parse/input_spliter.c \
+		./srcs/parse/parse.c \
+		./srcs/parse/s_list_utils.c \
 		./srcs/free/free.c \
 		./srcs/error/error_msg.c \
 

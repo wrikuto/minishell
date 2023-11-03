@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:54:34 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/29 11:45:15 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/03 22:14:09 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,32 @@ typedef struct stat			t_stat;
 
 typedef struct s_list
 {
-	void			*data;
+	char			*token;
 	struct s_list	*next;
 }				t_list;
 
-typedef struct s_shell
-{
+// typedef struct s_shell
+// {
 	
-}				t_shell;
+// }				t_shell;
 
 
 
-
+// s_list utils
+size_t	get_listsize(t_list *list);
+void	free_list(t_list **list);
+t_list	*create_list(char *pointer);
+void	add_listback(t_list **list, t_list *new);
 
 int		ft_pwd(void);
-int 	ft_exec(char *line);
+int 	ft_exec(t_list *line);
 void	syntax_analyze(char	*str);
 char	**input_spliter(char const *s);
 void	free_dbl(char **p);
 char	*search_path(const char *filename);
+
+// parse
+void	parse(char	*line, t_list **list);
 
 
 // struct s_shell
