@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:54:34 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/03 22:14:09 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/05 14:03:55 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 # include <signal.h>
 
-#define HASH_SIZE 29999
+// #define HASH_SIZE 29999
 
 
 								# include <stdio.h>
@@ -32,7 +32,7 @@ typedef struct stat			t_stat;
 
 typedef struct s_list
 {
-	char			*token;
+	char			*str;
 	struct s_list	*next;
 }				t_list;
 
@@ -42,6 +42,8 @@ typedef struct s_list
 // }				t_shell;
 
 
+// env
+int	 get_environ(t_list **env);
 
 // s_list utils
 size_t	get_listsize(t_list *list);

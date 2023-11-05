@@ -6,45 +6,45 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:29:53 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/03 22:26:39 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/04 15:19:39 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-size_t	size_of_space(char *str)
+size_t	size_of_space(char *line)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
+	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	return (i);
 }
 
-static char	*get_token(char *str, size_t count)
+static char	*get_token(char *line, size_t count)
 {
 	size_t	i;
-	char	*token;
+	char	*str;
 	
 	i = 0;
-	token = malloc(sizeof(char) * (count + 1));
-	if(token == NULL)
+	str = malloc(sizeof(char) * (count + 1));
+	if(str == NULL)
 		return (NULL);
-	token[count] = '\0';
+	str[count] = '\0';
 	while (i < count)
 	{
-		token[i] = str[i];
+		str[i] = line[i];
 		i++;
 	}
-	return (token);
+	return (str);
 }
 
-static void	set_token(char *token, t_list **head)
+static void	set_token(char *str, t_list **head)
 {
 	t_list	*new;
 
-	new = create_list(token);
+	new = create_list(str);
 	add_listback(head, new);
 
 }
@@ -103,7 +103,7 @@ void	parse(char *line, t_list **list)
 
 // int main()
 // {
-// 	// char	*str = "ls -f"; 
+// 	// char	*line = "ls -f"; 
 // 	t_list	*list = NULL;
 // 	t_list	*head;
 	

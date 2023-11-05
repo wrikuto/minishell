@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 17:10:17 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/03 21:53:51 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/04 15:20:25 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_list(t_list **list)
 	while (*list != NULL)
 	{
 		temp = (*list)->next;
-		free((*list)->token);
+		free((*list)->str);
 		free(*list);
 		*list = temp;
 	}
@@ -73,7 +73,7 @@ t_list	*create_list(char *pointer)
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return (NULL);
-	new_node->token = pointer;
+	new_node->str = pointer;
 	new_node->next = NULL;
 	return (new_node);
 }

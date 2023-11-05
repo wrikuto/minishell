@@ -6,13 +6,14 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:07:52 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/10/28 21:12:35 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/05 13:58:35 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include"../../inc/minishell.h"
 
-void	errno_error(char	*str)
+void	errno_error(char *str)
 {
-	ft_printf("%s\n", strerror(errno));
+	printf("%s\n%s\n", str, strerror(errno));
 }
+

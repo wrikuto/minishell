@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:52:28 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/03 22:25:55 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/04 17:40:14 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**set_argv(t_list	*list)
 	argv[count] = NULL;
 	while (list && i < count)
 	{
-		argv[i] = list->token;
+		argv[i] = list->str;
 		list = list->next;
 		i++;
 	}
@@ -50,8 +50,6 @@ int ft_exec(t_list *list)
 	pid_t		pid;
 	int			wstatus;
 
-
-
 	argv = set_argv(list);
 	pid = fork();
 	if (pid < 0)
@@ -59,7 +57,7 @@ int ft_exec(t_list *list)
 	else if (pid == 0)
 	{
 		// 息子
-		execve(list->token, argv, environ);
+		execve(list->str, argv, environ);
 		free(argv);
 		fatal_error("execve");
 	}
