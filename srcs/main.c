@@ -6,26 +6,11 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:22:25 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/04 18:01:38 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/05 14:31:38 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include"../inc/minishell.h"
-
-int get_env(t_list **env)
-{
-	extern char **environ;
-	size_t	i;
-	
-	i = 0;
-	while (environ[i] != NULL)
-	{
-		add_listback(env, create_list(strdup(environ[i])));
-		i++;
-	}
-	return (0);
-}
-
 
 
 int	analysis_line(char *line, t_list *env_list)
@@ -57,7 +42,7 @@ int	analysis_line(char *line, t_list *env_list)
 	else if (*line)
 	{
 		parse(line, &token_list);
-		res = search_path(token_list->str, env_list->str);
+		res = search_path(token_list->str, env_list);
 		if (res)
 		{
 			free(token_list->str);
@@ -77,7 +62,7 @@ int main(void)
 	int i;
 
 	env = NULL;
-	get_env(&env);
+	get_environ(&env);
 	rl_outstream = stderr;
 	
 	while(1)

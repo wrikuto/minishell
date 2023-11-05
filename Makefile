@@ -6,7 +6,7 @@
 #    By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 18:56:17 by wrikuto           #+#    #+#              #
-#    Updated: 2023/11/03 21:26:04 by wrikuto          ###   ########.fr        #
+#    Updated: 2023/11/05 14:21:17 by wrikuto          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ PRTF_A	= $(addprefix $(PRTF), /libftprintf.a)
 SRC_DIR	= ./srcs
 SRCS	= \
 		./srcs/main.c \
+		./srcs/environ/env.c \
 		./srcs/builtin/cat.c \
 		./srcs/builtin/pwd.c \
 		./srcs/exec/exec.c \

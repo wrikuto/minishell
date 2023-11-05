@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:54:34 by wrikuto           #+#    #+#             */
-/*   Updated: 2023/11/05 14:03:55 by wrikuto          ###   ########.fr       */
+/*   Updated: 2023/11/05 14:44:35 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,18 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-// typedef struct s_shell
-// {
+typedef struct s_shell
+{
+	t_list	*env_list;
+	int		exit_status;
 	
-// }				t_shell;
+}				t_shell;
 
 
 // env
-int	 get_environ(t_list **env);
+int		 get_environ(t_list **env);
+char	*get_matchpath(t_list *env, char *findname);
+
 
 // s_list utils
 size_t	get_listsize(t_list *list);
@@ -51,12 +55,13 @@ void	free_list(t_list **list);
 t_list	*create_list(char *pointer);
 void	add_listback(t_list **list, t_list *new);
 
+
 int		ft_pwd(void);
 int 	ft_exec(t_list *line);
 void	syntax_analyze(char	*str);
 char	**input_spliter(char const *s);
 void	free_dbl(char **p);
-char	*search_path(const char *filename);
+char	*search_path(const char *filename, t_list *env);
 
 // parse
 void	parse(char	*line, t_list **list);
